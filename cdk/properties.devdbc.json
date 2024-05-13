@@ -1,0 +1,70 @@
+{
+  "app_name": "userRdsLambda",
+  "db_port": 3306,
+  "removal_policy": "DESTROY",
+  "vpc_name": "vpcsDev/dev",
+  "mgmt_vpc_name": "vpcsDev/mgmt",
+  "db_stack_name": "rdsDevdbc",
+  "vpc_built_by_cdk": true,
+  "notifications_sns_topic_arn": "",
+  "route53": {
+    "domain_name": "appdev.plumgroup.com",
+    "ttl": 60
+  },
+  "create_db_users": [
+    {
+      "application": "director",
+      "user_name": "director_svc",
+      "granular_db_permissions": [
+        {
+          "database": "canopy",
+          "tables": [
+            "ivr_phone_number"
+          ],
+          "grants": [
+            "SELECT"
+          ]
+        },
+        {
+          "database": "uberapp",
+          "tables": [
+            "hosting_number",
+            "sbc_trunk"
+          ],
+          "grants": [
+            "SELECT"
+          ]
+        },
+        {
+          "database": "blacklist",
+          "tables": [
+            "sbc_lookup"
+          ],
+          "grants": [
+            "SELECT"
+          ]
+        }
+      ]
+    },
+    {
+      "application": "uberapp",
+      "user_name": "uberapp_svc",
+      "granular_db_permissions": [
+        {
+          "database": "canopy",
+          "tables": [],
+          "grants": [
+            "SELECT"
+          ]
+        },
+        {
+          "database": "uberapp",
+          "tables": [],
+          "grants": [
+            "SELECT"
+          ]
+        }
+      ]
+    }
+  ]
+}

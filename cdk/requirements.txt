@@ -1,0 +1,6 @@
+jsii
+boto3
+aws-cdk-lib==2.100.0
+#aws-cdk.custom-resources
+#constructs
+#cdk_ec2_key_pair

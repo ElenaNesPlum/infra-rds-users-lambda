@@ -1,0 +1,47 @@
+aws sso login --profile plum-dev
+ENV=devfuselogs AWS_PROFILE=plum-dev AWS_DEFAULT_REGION=us-east-1 cdk --profile plum-dev deploy --all
+
+ENV=devdbc AWS_PROFILE=plum-dev AWS_DEFAULT_REGION=us-east-1 cdk --profile plum-dev deploy --all
+ENV=devdbc AWS_PROFILE=plum-dev AWS_DEFAULT_REGION=us-east-1 cdk --profile plum-dev deploy yuserRdsLambdaDevdbc-TempLambda
+ENV=devdbc AWS_PROFILE=plum-dev AWS_DEFAULT_REGION=us-east-1 cdk --profile plum-dev destro-y userRdsLambdaDevdbc-TempLambda  --> didn't delete Stack
+
+
+deactivate
+rm -rf ../venv
+cd cdk
+pip install --upgrade pip
+pip install -r requirements.txt
+sudo npm install -g aws-cdk@2.100.0
+sudo npm install -g npm@10.7.0
+
+pip install aws-cdk-lib
+pip install cdk-ec2-key-pair
+
+python -m ensurepip --upgrade
+python -m pip install --upgrade pip
+python -m pip install --upgrade virtualenv
+
+
+aws-cdk-custom-resources 1.204.0 requires constructs<4.0.0,>=3.3.69, but you have constructs 10.0.0 which is incompatible.
+cdk-ec2-key-pair 3.3.3 requires constructs<11.0.0,>=10.0.0, but you have constructs 3.3.69 which is incompatible.
+
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+rds 1.0.0 requires cdk_ec2_key_pair, which is not installed.
+aws-cdk-lib 2.102.0 requires constructs<11.0.0,>=10.0.0, but you have constructs 3.4.344 which is incompatible.
+
+
+Timothy's requirements:
+jsii
+boto3
+aws-cdk-lib==2.100.0
+constructs
+cdk_ec2_key_pair
+
+
+
+
+python
+
+import sys
+print(sys.path)
+sys.path.append('/plum/infra-rds/cdk/lib')
